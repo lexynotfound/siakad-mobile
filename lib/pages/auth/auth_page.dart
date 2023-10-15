@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../pages/auth/widgets/login_bottom.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/images.dart';
+import '../../core/widgets/buttons.dart';
+import '../dosen/dosen_page.dart';
+import '../mahasiswa/mahasiswa_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -48,7 +52,7 @@ class _AuthPageState extends State<AuthPage> {
           vertical: 24.0
           ),
         child: Column(
-          mainAxisAlignment: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Button.filled(
               onPressed:(){
@@ -58,7 +62,7 @@ class _AuthPageState extends State<AuthPage> {
                   isScrollControlled: true,
                   builder: (BuildContext context){
                     return LoginBottomSheet(
-                      onPressed(){
+                      onPressed: (){
                         Navigator.pop(context);
                         Navigator.pushReplacement(
                           context, 
