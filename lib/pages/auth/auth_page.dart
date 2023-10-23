@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:siakad_app/bloc/login/login_bloc.dart';
 import '../../pages/auth/widgets/login_bottom.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/images.dart';
@@ -46,10 +48,26 @@ class _AuthPageState extends State<AuthPage> {
           ],
         ),
       ),
+      /* floatingActionButton: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: (){},
+            error: (message) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Error - $message'),
+                  ),
+                );
+              });
+            },
+          );
+        },
+      ), */
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 24.0
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 40.0
           ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -61,54 +79,32 @@ class _AuthPageState extends State<AuthPage> {
                   useSafeArea: true,
                   isScrollControlled: true,
                   builder: (BuildContext context){
-                    return LoginBottomSheet(
-                      onPressed: (){
-                        Navigator.pop(context);
-                        Navigator.pushReplacement(
-                          context, 
-                          MaterialPageRoute(
-                            builder: (context)
-                            => const DosenPage(),
-                            ),
-                        );
-                      },
+                    return BlocProvider(
+                      create: (context) => LoginBloc(),
+                      child: const LoginBottomSheet(),
+                      // onPressed: (){
+                      //   Navigator.pop(context);
+                      //   Navigator.pushReplacement(
+                      //     context, 
+                      //     MaterialPageRoute(
+                      //       builder: (context)
+                      //       => const DosenPage(),
+                      //       ),
+                      //   );
+                      // },
                     );
                   },
                 );
               },
-              label: 'CIVITAS AKADEMIK'
-            ),
-            const SizedBox(height: 8.0),
-            Button.outlined(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context, 
-                  useSafeArea: true,
-                  isScrollControlled: true,
-                  builder: (BuildContext context){
-                    return LoginBottomSheet(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pushReplacement(
-                          context, 
-                          MaterialPageRoute(
-                            builder: (context) => const MahasiswaPage(),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                );
-              },
-              label: 'MAHASISWA',
+              label: 'Login'
             ),
             const SizedBox(height: 32.0),
             const Text.rich(
               TextSpan(
-                text: "Dengan memilih salah satu, Anda Menyetujuinnya",
+                text: "Dengan memilih salah satu, Anda Menyetujuinya",
                 children: [
                   TextSpan(
-                    text: 'Ketentuan Layanan & Kebijakan Privasi',
+                    text: ' Ketentuan Layanan & Kebijakan Privasi',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: ColorName.primary,

@@ -13,7 +13,7 @@ class Button extends StatelessWidget {
     this.textColor = Colors.white,
     this.width = double.infinity,
     this.height = 50.0,
-    this.borderRadius = 6.0,
+    this.borderRadius = 10.0,
     this.icon,
   });
 
@@ -26,7 +26,7 @@ class Button extends StatelessWidget {
     this.textColor = ColorName.black,
     this.width = double.infinity,
     this.height = 50.0,
-    this.borderRadius = 6.0,
+    this.borderRadius = 10.0,
     this.icon,
   });
 

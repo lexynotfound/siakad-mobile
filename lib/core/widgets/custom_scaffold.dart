@@ -14,6 +14,8 @@ class CustomScaffold extends StatelessWidget {
     this.paddingTop = 20.0,
     this.bottomNavigationBar,
   });
+
+  
   
   @override
   Widget build(BuildContext context) {

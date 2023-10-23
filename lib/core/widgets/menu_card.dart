@@ -38,7 +38,7 @@ class MenuCard extends StatelessWidget{
                       color: ColorName.white,
                     ),
                   ),
-                  const SizedBox(height: 5.0),
+                  const SizedBox(height: 10.0),
                   ElevatedButton(
                     onPressed: onPressed, 
                     style: ElevatedButton.styleFrom(
