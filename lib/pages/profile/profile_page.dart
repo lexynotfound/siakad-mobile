@@ -30,15 +30,16 @@ class _ProfilePageState extends State<ProfilePage> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const SizedBox(height: 40.0),
+          const SizedBox(height: 30.0),
           const Text(
-            "PROFILE",
+            "Profile",
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w600,
               color: ColorName.primary,
             ),
           ),
+          const SizedBox(height: 15.0),
           Container(
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -109,10 +110,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
                 const SizedBox(height: 5.0),
-                Dash(
+                /* Dash(
                   length: MediaQuery.of(context).size.width - 60.0,
                   dashColor: const Color(0xffD5DFE7),
-                ),
+                ), */
                 const SizedBox(height: 16.0),
               ],
             ),
@@ -140,6 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const ImageIcon(IconName.profileLine),
                   label: 'Edit Informasi Profil',
+                  labelColor: ColorName.black,
                   value: '',
                   valueColor: ColorName.primary,
                   onTap: () {
@@ -155,6 +157,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const Icon(Icons.notifications),
                   label: 'Notifikasi',
+                  labelColor: ColorName.black,
                   value: 'ON',
                   valueColor: ColorName.primary,
                   onTap: () {},
@@ -164,6 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.translate),
                   label: 'Bahasa',
                   value: 'Indonesia',
+                  labelColor: ColorName.black,
                   valueColor: ColorName.primary,
                   onTap: () {},
                 ),
@@ -193,6 +197,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const ImageIcon(IconName.projector2Line),
                   label: 'Keamanan',
+                  labelColor: ColorName.black,
                   value: '',
                   valueColor: ColorName.primary,
                   onTap: () {},
@@ -201,6 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const ImageIcon(IconName.mentalHealthLine),
                   label: 'Tema',
+                  labelColor: ColorName.black,
                   value: 'Mode Terang',
                   valueColor: ColorName.primary,
                   onTap: () {},
@@ -231,6 +237,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const ImageIcon(IconName.contactsLine),
                   label: 'Help & Support',
+                  labelColor: ColorName.black,
                   value: '',
                   valueColor: ColorName.primary,
                   onTap: () {},
@@ -239,6 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const ImageIcon(IconName.chatQuoteLine),
                   label: 'Contact us',
+                  labelColor: ColorName.black,
                   value: '',
                   valueColor: ColorName.primary,
                   onTap: () {},
@@ -247,6 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 RowText(
                   icon: const Icon(Icons.lock),
                   label: 'Privacy policy',
+                  labelColor: ColorName.black,
                   value: '',
                   valueColor: ColorName.primary,
                   onTap: () {},
@@ -254,7 +263,55 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 12,
                 ),
-                Center(
+                BlocProvider(
+                    create: (context) => LogoutBloc(),
+                    child: BlocConsumer<LogoutBloc, LogoutState>(
+                      listener: (context, state) {
+                        state.maybeWhen(
+                          orElse: () {},
+                          loaded: () {
+                            AuthLocalDataSource().removeAuthData();
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const AuthPage();
+                            }));
+                          },
+                          error: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('logout error'),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          orElse: () {
+                            return RowText(
+                            icon: const Icon(Icons.exit_to_app),
+                            label: 'Logout',
+                            labelColor: ColorName.black,
+                            value: '',
+                            valueColor: ColorName.primary,
+                              onTap: () {
+                                context
+                                    .read<LogoutBloc>()
+                                    .add(const LogoutEvent.logout());
+                              },
+                              /* child: const Text('Logout'), */
+                            );
+                          },
+                          loaded: () {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                /* Center(
                   child: BlocProvider(
                     create: (context) => LogoutBloc(),
                     child: BlocConsumer<LogoutBloc, LogoutState>(
@@ -298,7 +355,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                   ),
-                )
+                ) */
               ],
             ),
           ),
