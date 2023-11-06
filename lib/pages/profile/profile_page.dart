@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                         const Text(
-                          "Saiful Bahri",
+                          "Kurnia Raihan Ardian",
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: ColorName.primary,

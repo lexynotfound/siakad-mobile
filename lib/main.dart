@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
         builder:(context, snapshot){
           if(snapshot.hasData && snapshot.data!){
             
-            return MahasiswaPage();
+            return const MahasiswaPage();
           }
-          return AuthPage();
+          return const AuthPage();
         },
       ),
       /* home: BlocProvider(
