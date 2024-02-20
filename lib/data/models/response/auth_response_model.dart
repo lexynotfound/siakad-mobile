@@ -31,12 +31,14 @@ class User {
   final String email;
   final String name;
   final String roles;
+  final String profileImage;
 
   User({
     required this.id,
     required this.email,
     required this.name,
     required this.roles,
+    required this.profileImage
   });
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -48,6 +50,7 @@ class User {
         email: json["email"],
         name: json["name"],
         roles: json["roles"],
+        profileImage: json["profile_image"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -55,5 +58,6 @@ class User {
         "email": email,
         "name": name,
         "roles": roles,
+        "profile_image": profileImage,
       };
 }

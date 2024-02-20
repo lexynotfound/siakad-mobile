@@ -22,12 +22,12 @@ class _AuthPageState extends State<AuthPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              Images.logo,
-              width: 115.0,
+              Images.logos,
+              width: 135.0,
             ),
             const SizedBox(height: 8.0),
             const Text(
-              "SIAKAD",
+              "IDS",
               style: TextStyle(
                 fontSize: 34,
                 fontWeight: FontWeight.w800,
@@ -36,7 +36,7 @@ class _AuthPageState extends State<AuthPage> {
             ),
             const SizedBox(height: 8.0),
             const Text(
-              "Yang Terbaik",
+              "",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,

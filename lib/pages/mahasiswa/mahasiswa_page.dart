@@ -4,6 +4,7 @@ import '../../core/constants/colors.dart';
 
 import '../../core/constants/icons.dart';
 import '../../pages/mahasiswa/dashboard_page.dart';
+import 'jadwal_matkul_page.dart';
 
 class MahasiswaPage extends StatefulWidget {
   const MahasiswaPage({super.key});
@@ -23,9 +24,7 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
 
   final List<Widget> _pages = [
     const DashboardPage(),
-    const Center(
-      child: Text('Profile'),
-    ),
+    const JadwalMatkulPage(),
     const ProfilePage(
       role: 'Mahasiswa',
     ),

@@ -7,7 +7,7 @@ part 'logout_state.dart';
 part 'logout_bloc.freezed.dart';
 
 class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
-  LogoutBloc() : super(_Initial()) {
+  LogoutBloc() : super(const _Initial()) {
     on<_Logout>((event, emit)async {
       emit(const _Loading());
       final response = await AuthRemoteDatasource().logout();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dash/flutter_dash.dart';
 
 import '../../bloc/logout/logout_bloc.dart';
 import '../../core/constants/colors.dart';
@@ -13,9 +12,9 @@ import '../auth/auth_page.dart';
 class ProfilePage extends StatefulWidget {
   final String role;
   const ProfilePage({
-    Key? key,
+    super.key,
     required this.role,
-  }) : super(key: key);
+  });
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();

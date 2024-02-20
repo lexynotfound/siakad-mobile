@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:siakad_app/pages/mahasiswa/khs_page.dart';
+import 'package:siakad_app/pages/mahasiswa/absensi_page.dart';
+import 'package:siakad_app/pages/mahasiswa/jadwal_matkul_page.dart';
+import 'package:siakad_app/pages/mahasiswa/nilai_mk_page.dart';
+import 'package:siakad_app/pages/mahasiswa/widgets/sample_map_page.dart';
 import '../../core/constants/colors.dart';
 import '../../core/widgets/menu_card.dart';
 import '../../core/widgets/search_input.dart';
@@ -68,21 +73,30 @@ class _DashboardPageState extends State<DashboardPage> {
           MenuCard(
             label: 'Kartu Hasil Studi',
             backgroundColor: const Color(0xff686BFF),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const KhsPage()));
+            },
             imagePath: Images.khs,
           ),
           const SizedBox(height: 40.0),
           MenuCard(
             label: 'Nilai Mata Kuliah',
             backgroundColor: const Color(0xffFFB023),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const NilaiMkPage()));
+            },
             imagePath: Images.nMatkul,
           ),
           const SizedBox(height: 40.0),
           MenuCard(
             label: 'Jadwal Mata Kuliah',
             backgroundColor: const Color(0xffFF68F0),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const JadwalMatkulPage()));
+            },
             imagePath: Images.jadwal,
           ),
         ],
